@@ -22,36 +22,53 @@
        pip install argparse
 </ul>
 
-<h2>The contents of this Project :</h2>
+<h2>Project Structure :</h2>
 <ul>
-  <li>opencv_face_detector.pbtxt</li>
-  <li>opencv_face_detector_uint8.pb</li>
-  <li>age_deploy.prototxt</li>
-  <li>age_net.caffemodel</li>
-  <li>gender_deploy.prototxt</li>
-  <li>gender_net.caffemodel</li>
-  <li>a few pictures to try the project on</li>
-  <li>detect.py</li>
+  <li><b>models/</b> - Contains all AI model files
+    <ul>
+      <li>opencv_face_detector.pbtxt & opencv_face_detector_uint8.pb - Face detection models</li>
+      <li>age_deploy.prototxt & age_net.caffemodel - Age prediction models</li>
+      <li>gender_deploy.prototxt & gender_net.caffemodel - Gender prediction models</li>
+    </ul>
+  </li>
+  <li><b>src/</b> - Source code files
+    <ul>
+      <li>detect.py - Original command line script</li>
+      <li>ui.py - Desktop GUI application</li>
+      <li>app.py - Web interface (Streamlit)</li>
+    </ul>
+  </li>
+  <li><b>sample_images/</b> - Sample images for testing</li>
+  <li><b>Example/</b> - Example output images</li>
+  <li>run_ui.py - Main launcher for desktop UI</li>
+  <li>run_ui.bat - Windows batch file launcher</li>
  </ul>
  <p>For face detection, we have a .pb file- this is a protobuf file (protocol buffer); it holds the graph definition and the trained weights of the model. We can use this to run the trained model. And while a .pb file holds the protobuf in binary format, one with the .pbtxt extension holds it in text format. These are TensorFlow files. For age and gender, the .prototxt files describe the network configuration and the .caffemodel file defines the internal states of the parameters of the layers.</p>
  
  <h2>Usage :</h2>
+ 
+ <h3>🖥️ Desktop UI (Recommended)</h3>
  <ul>
-  <li>Download my Repository</li>
-  <li>Open your Command Prompt or Terminal and change directory to the folder where all the files are present.</li>
-  <li><b>Detecting Gender and Age of face in Image</b> Use Command :</li>
-  
-      python detect.py --image <image_name>
-</ul>
-  <p><b>Note: </b>The Image should be present in same folder where all the files are present</p> 
-<ul>
-  <li><b>Detecting Gender and Age of face through webcam</b> Use Command :</li>
-  
-      python detect.py
-</ul>
-<ul>
-  <li>Press <b>Ctrl + C</b> to stop the program execution.</li>
-</ul>
+  <li>Double-click <b>run_ui.bat</b> (Windows) or run <code>python run_ui.py</code></li>
+  <li>Click "Upload Image" to select your own image</li>
+  <li>Or click on sample images to test</li>
+  <li>Results will be displayed with detected faces highlighted</li>
+ </ul>
+ 
+ <h3>🌐 Web Interface</h3>
+ <ul>
+  <li>Navigate to src folder: <code>cd src</code></li>
+  <li>Run: <code>streamlit run app.py</code></li>
+  <li>Open browser to the displayed URL</li>
+ </ul>
+ 
+ <h3>⌨️ Command Line (Original)</h3>
+ <ul>
+  <li>Navigate to src folder: <code>cd src</code></li>
+  <li><b>For image detection:</b> <code>python detect.py --image ../sample_images/girl1.jpg</code></li>
+  <li><b>For webcam detection:</b> <code>python detect.py</code></li>
+  <li>Press <b>Ctrl + C</b> to stop webcam mode</li>
+ </ul>
 
 # Working:
 [![Watch the video](https://img.youtube.com/vi/ReeccRD21EU/0.jpg)](https://youtu.be/ReeccRD21EU)
