@@ -96,9 +96,13 @@ class GenderAgeDetectorUI:
         ttk.Button(button_frame, text="Upload Image", command=self.upload_image).pack(side=tk.LEFT, padx=10)
         ttk.Button(button_frame, text="Open Webcam", command=self.open_webcam).pack(side=tk.LEFT, padx=10)
 
-        # Image Display Frame ------------------------
-        self.image_frame = tk.Frame(self.root, bg="#252525", bd=3, relief=tk.RIDGE)
-        self.image_frame.pack(padx=20, pady=15, fill=tk.BOTH, expand=True)
+        # Main content container
+        main_content = ttk.Frame(self.root, style="Modern.TFrame")
+        main_content.pack(padx=10, pady=15, fill=tk.BOTH, expand=True)
+
+        # Image Display Frame
+        self.image_frame = tk.Frame(main_content, bg="#252525", bd=3, relief=tk.RIDGE, width=400, height=500)
+        self.image_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
         self.image_label = tk.Label(
             self.image_frame,
@@ -107,20 +111,43 @@ class GenderAgeDetectorUI:
             fg="white",
             bg="#252525"
         )
-        self.image_label.pack(expand=True)
+        self.image_label.pack(expand=True, fill=tk.BOTH)
 
-        # Results Display -----------------------------
+        # Results & Info Frame (beside the image)
+        results_container = ttk.Frame(main_content, style="Modern.TFrame")
+        results_container.pack(side=tk.LEFT, padx=10, fill=tk.Y)
+
         self.results_label = tk.Label(
-            self.root,
+            results_container,
             text="Results will appear here",
             bg="#111827",
             fg="#e5e7eb",
             font=("Segoe UI", 12),
             relief=tk.FLAT,
-            height=3,
-            pady=10
+            height=5,
+            width=40,
+            anchor="nw",
+            justify="left",
+            padx=5,
+            pady=5
         )
-        self.results_label.pack(padx=20, pady=10, fill=tk.X)
+        self.results_label.pack(pady=(0, 10), fill=tk.X)
+
+        self.info_label = tk.Label(
+            results_container,
+            text="Additional info will appear here",
+            bg="#1f2937",
+            fg="#f3f4f6",
+            font=("Segoe UI", 12),
+            relief=tk.FLAT,
+            height=5,
+            width=40,
+            anchor="nw",
+            justify="left",
+            padx=5,
+            pady=5
+        )
+        self.info_label.pack(fill=tk.X)
 
         # Sample Images -------------------------------
         sample_frame = ttk.Frame(self.root, style="Modern.TFrame")
